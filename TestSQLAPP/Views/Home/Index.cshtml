@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+  <h2>Welcome to My Application</h2>
+
+  <table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+        </tr>
+    }
+  </table>
+</div>

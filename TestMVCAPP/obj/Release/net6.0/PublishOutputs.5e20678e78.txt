@@ -1,0 +1,7 @@
+C:\Demos\GCP-Dec 2023\TestMVCAPP\buildoutput\TestMVCAPP.exe
+C:\Demos\GCP-Dec 2023\TestMVCAPP\buildoutput\appsettings.Development.json
+C:\Demos\GCP-Dec 2023\TestMVCAPP\buildoutput\appsettings.json
+C:\Demos\GCP-Dec 2023\TestMVCAPP\buildoutput\TestMVCAPP.dll
+C:\Demos\GCP-Dec 2023\TestMVCAPP\buildoutput\TestMVCAPP.deps.json
+C:\Demos\GCP-Dec 2023\TestMVCAPP\buildoutput\TestMVCAPP.runtimeconfig.json
+C:\Demos\GCP-Dec 2023\TestMVCAPP\buildoutput\TestMVCAPP.pdb

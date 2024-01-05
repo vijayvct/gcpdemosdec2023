@@ -1,0 +1,15 @@
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\TestSQLAPP.exe
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\appsettings.Development.json
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\appsettings.json
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\TestSQLAPP.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\TestSQLAPP.runtimeconfig.json
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\TestSQLAPP.pdb
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\Microsoft.EntityFrameworkCore.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\Microsoft.Extensions.Caching.Memory.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\Microsoft.Extensions.DependencyInjection.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\MySqlConnector.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\System.Diagnostics.DiagnosticSource.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\buildoutput\TestSQLAPP.deps.json

@@ -1,0 +1,559 @@
+Google Cloud Platform 
+---------------------
+
+What is Cloud Computing?
+------------------------
+Cloud Computing is on-demand delivery of computing services (servers, storage, networking, database, software .....) over the internet
+All the services are hosted on remote server which is managed by a cloud provider(Google, Amazon, Microsoft)
+We only pay for the services that we use
+
+Why to use Cloud Computing?
+---------------------------
+Hospital Management System --> Perform the deployment of application
+
+	Traditional (On-Premises)
+	-------------------------
+	Space (building or some place to set up the infrastructure)
+	Server - Computer 
+	Networking, Storage Device 
+	Software(runtime,db server...) and Operating System 
+	License of SW and OS 
+	Utility - Electricity , Backup of Electricity, Internet, Cooling......
+	Expert set of people to manage the infrastructure
+	
+	Cons:- 
+	-----
+	Cost - Huge Upfront Investment 
+	
+		Capital Expenditure (CapEx)
+		Opertional Expenditure (OpEx)
+	
+	Processes are time consuming
+	Scaling and High-Availbility 
+	Disaster Recovery
+	Maintenance and Upgradation
+	
+	Solution to above problem is Cloud Computing 
+	
+	Using Cloud Computing, we can provision the infrastructure when we need and delete the same when the work is done, we can easily achieve scalability and high-availbility of application and etc
+	It provides different pricing option to suit your requirement
+	
+Advantages of Cloud Computing 
+-----------------------------
+Provide Cost Effective Solution 
+High-Availbility
+Scalability 
+	-Vertical Scaling 
+	-Horizontal Scaling 
+Elasticity 
+Disaster Recovery 
+Security 
+
+
+Why Organization move towards Cloud?
+------------------------------------
+Provisioning of Infrastructure is easy and quick 
+You need not be expert for managing IT resource
+Cloud evolves very rapidly 
+
+Types of Cloud 
+--------------
+Private Cloud (On-Premises) 
+	-It is only accessible to people working in an organization
+	-Organization is responsible for managing the infrastructure and maintanence of the same
+	
+Public Cloud 
+	-It is service provide by the public cloud provider
+	-Anyone can make use of this service with the help a valid subscription 
+	-The infrastructure is managed by the cloud provider
+	
+Hybrid Cloud 
+	-It is combination of private and public cloud 
+	
+Cloud Service Delivery Model
+----------------------------
+Infrastructure as a Service(IaaS)	
+	-Allows you to build the infrastructure( vm, storage, network...) in the cloud 
+		Compute Engine 
+		VPC
+		
+Platform as a Service(PaaS)
+	-Provides an enviornment to quickly deploy application without managing the infrastructure
+		App Engine 
+
+Software as a Service
+	-Cloud Provider provides us with an application 
+	-We need a subscription to access the application 
+	
+		Office 365 or G-Suite 
+		
+What is GCP?
+------------
+It is a cloud computing platform offered by Google.
+It ptovide n-number of service which can used by startups as well as large enterprises 
+It provide competative pricing options and also provide support for open source technologies
+
+Way to interact with the Google Cloud
+-------------------------------------
+
+Factors to select a region and zone 
+-----------------------------------
+-Deploying solution close to customer so they experience low latency 
+-Cost 
+-Compilance 
+-Availbility of a service 
+
+GCP Account 
+-----------
+Free Tier Account - 90 Days with card $300 or 24K INR
+
+Gmail Account or Citiustech Email ID 
+Credit or Debit Card (Verification)
+
+http://cloud.google.com/free
+
+Software 
+--------
+Visual Studio Code 
+.NET SDK 6
+MySql Workbench
+Google Cloud SDK 
+Winscp
+
+Resource Heirarchy in GCP 
+-------------------------
+
+Infrastructure as a Service 
+---------------------------
+Google Cloud Compute Engine 
+
+Virtual Machine - It is service to build computer in the cloud 
+
+Multiple Use-case 
+------------------
+-Development / Testing 
+-Database Server 
+-Web Server 
+-Backup Server 
+-Machine Learning Purpose 
+-Video, Image or audio rendering
+
+Points to consider while creating a VM 
+--------------------------------------
+Name :- Always provide meaningful name to VM instanace 
+
+	dev-sql01
+	prod-webserver01
+	prod-sql01
+
+	do not name like vm1,vm2,vm3...
+
+Size :- CPU(vCPU) and RAM 
+
+Location :- Region and Zone to deploy the VM 
+
+OS :- Windows(10,11, all server editions)(Not Included in the Free tier), Linux (Ubuntu, Debian, Centos, Redhat...), Third Party images or Marketplace Image 
+
+Disk Size :- For every VM a default OS disk is available , we can also attach additional data disk to a VM 
+
+Practical 
+---------
+1)To create a linux VM 
+2)Log into the VM using SSH 
+3)Install a Web Server on the VM 
+4)Access the web server from the External IP of the VM 
+
+https://console.cloud.google.com
+
+Once you have logged into the VM 
+
+use the following command to login as a super user 
+
+	sudo -i 
+	
+	apt-get update -- to apply updates on the vm 
+	
+	apt install nginx -y -- this command will install the nginx server on the VM
+	
+	systemctl status nginx - to check the status of the nginx service 
+	
+	<html>
+	<head>
+		<title>Home Page</title>
+	</head>
+	<body>
+		<h1>Welcome to GCP.......</h1>
+	</body>
+	</html>
+	
+	vi index.html - to create and open the file in vi editor
+	
+	shift + i :- to enter into insert mode 
+	
+	shift+esc+: :- type wq(write and quite) + press enter
+	
+Snapshots 
+---------
+Snapshots are incremental backup of VM from the persistent disk(OS disk)
+It can help you to create a restore point and create new vm with the state where it was working fine
+Snapshots can be created manually or we can automate the creation of snapshot by creating a snapshot schedule
+
+Custom Images 
+Instance Templates 
+Instance Group 
+How to deplay a Asp.NET Core Application on a Google Compute Engine VM (linux)
+
+Images
+------
+Consist of Boot Loader and Root File System 
+
+Public Images 
+-------------
+It is provided and maintained by Google, Open Source Communities or Third Party Vendors 
+By default all GCP projects have access to these images and can use them to create instance(vm)
+
+Custom Images 
+-------------
+We can create custom images from bootdisk and other images 
+We can also create a custom image from a persistent disk , a snapshot or another images
+It help create a image with pre-condfigured sw and tools to save time while creating VMs in realtime scenarios
+
+Instance Template 
+-----------------
+An Instance Template is a resource that we can use to create a VM instance and Managed Instance Group (MIG)
+It defines machine type, boot disk or container image, labels and other instance properties
+It provides a convinient way to save VM instance configuration so you can use it later to create VM's
+
+Advance Settings --> Management --> Startup Script
+
+sudo apt-get update
+
+sudo apt install apache2 -Y
+
+Marketplace Images 
+-------------------
+These are pre-configured with different workload and with a click of button we have a VM created with all the configuration in place
+
+How to deplay a Asp.NET Core Application on a Google Compute Engine VM (linux)
+--------------------------------------------------------------------
+1.Create a MVC Project 
+
+	-Open a Blank Folder in VS Code 
+	-Execute the below command to create a Asp.NET Core MVC Project 
+	
+		dotnet new mvc -f net6.0 --use-program-main
+		
+	-TO generate the build output of the project execute the following command in the terminal 
+	
+		dotnet publish -c Release -o buildoutput
+		
+2.Create a VM in GCP 
+
+3.Create a Public and Private Key pair of the VM for Winscp authentication 
+
+	-Open PuttyGen and Generate a new key pair and save the public private keypair
+	
+4.Login to the VM and install the required runtime and web server (nginx)
+
+Instance Group 
+--------------
+An instance group is a collection of VMs instance that you can manage as a single entity 
+
+2 Types of Instance Group 
+-------------------------
+Managed Instance Group(MIGs)
+----------------------------
+MIGs ltes you operate apps in multiple identical VMs
+We can make our workload scalable and highly available by taking advantage of MIG services like Auto-Scaling, Auto-Healing, Regional Deployments and Automatic Updating 
+We can also perform rolling updates 
+To create a MIG we need to create a Instance Template 
+We can also achieve load balancing
+
+Unmanaged Instance Group
+------------------------
+An unmanaged instance group is a collection os VMs that are not identical 
+It is useful to group together VMs that requires individual configuration or tuning 
+It cannot be used for Auto-Scaling 
+Rolling update are also not possible 
+We can perform load balancing
+
+Practical Task 
+--------------
+1)Create a Instance Template 
+2)Create a Managed Instance Group
+3)Perform Rolling Updates 
+4)Perform Auto-sclaing and Auto-healing
+
+Instance template 1 - Ubuntu 20.04 + nginx 
+
+#! /bin/bash
+
+apt-get update && apt-get install nginx -y
+
+Instance template 2 - Ubuntu 22.04 + apache2 
+
+#! /bin/bash
+
+apt-get update && apt-get install apache2 -y
+
+Scaling Approaches
+------------------
+Vertical Scaling - refers to adding more compute , memory and IO capabilities to an existing resource. It is manual approach 
+
+Horizontal Scaling - refers to adding additional instance to manage workload. It can be automated 
+
+apt install stress
+
+Load Balancer 
+-------------
+A load balancer distributes user traffic across multiple instance of your application
+
+	Front End - IP Address 
+	Backend Pool - MIGs(Instance Template + Vms)
+	Health Check
+	
+Practical Task 
+--------------
+1)Create 3 Instance Template for 3 regions(us,eu,asia)
+2)Create 3 MIGs for 3 regions with autoscaling and healthcheck
+3)Create a HTTP Load Balancer and configure backend, host and path, front -end
+4)Create 3 clients to perform load balancing(us,eu,asia)
+
+https://github.com/vijayvct/GCPTrain
+
+Curl Command
+
+Slow
+
+while true ; do (curl http://34.144.215.232/service ) ; sleep 2 ; done
+
+Fast
+
+while true ; do (curl http://34.144.215.232/service ) ; sleep 0.1 ; done
+
+Networking
+----------
+On-Premises
+-----------
+Corporate network provides a secure internal network protecting your resources, data and communication from external users
+
+On Cloud 
+--------
+Virtual Private Cloud (VPC)
+
+It is similar to on-premises network running in Google Cloud 
+It is an isolated network, network traffic in a VPC is isloated from all the other Google Cloud VPCs
+You can control all the traffic coming in and out of the VPC 
+It is recommeded to create GCP resource(Compute Engine, Database etc) with in a VPC. This provides security from the unauthorised access and enables secure communication between yor cloud resources
+In GCP, VPC is global resources.It consist of subnets in one or more regions
+By Default, every GCP project has a default VPC with default subnets 
+
+Subnets 
+-------
+Subnets allows you to divide a large network into smaller units
+GCP create subnet for each region in the default VPC 
+
+CIDR (Classless Inter-Domain Routing) Blocks
+
+IPV4 Address = 32 bits integer 
+
+10.0.0.0
+
+0000 1010.0000 000.0000 0000.0000 0000
+
+10.0.0.0/16 => 32-16=> 16=> 2^16 = 65536 IP Address 
+
+10.2.0.0/28 => 32-28=> 4=> 2^4 =16 IP Address 
+
+10.128.0.0/20 => 32-20 => 12 => 2^12 = 4096 IP Address 
+
+https://cidr.xyz/
+
+We can create VPC network in 2 modes
+1)Auto Mode - Subnets are automatically created in each region
+
+2)Custom Mode 
+	-No subnets are created by default
+	-We have to create subnets manually and mentioned IP address range 
+	-Recommended for production
+	
+Firewall Rules 
+--------------
+Firewall Rules allows us to control traffic going in or out of the network
+
+Ingress(Inbound) Rule - Incoming traffic from outside to GCP resource 
+
+Egress(Outbound) Rule - Outgoing traffic from GCP resource to destination or the public internet 
+
+Cloud SQL(PaaS)
+---------------
+Cloud SQL is a fully managed database service that helps you setup, maintain, manage and administer relational database in GCP Cloud 
+It supports MySQL, PostgreSQL and MSSQL Server 
+It is hosted on a VM in GCP enviornment, managed by Google running a version of the database binary 
+
+Pratical 
+--------
+Create and Interact with MySQL database using Google Cloud SQL 
+
+Connection to MySql Cloud Instance 
+	-Cloud Shell 
+	-VM
+	-MySql Client (MySql Workbench)
+	
+	Cloud Shell 
+	-----------
+	gcloud sql instances list -- to list all the cloud sql instance in a project 
+	
+	gcloud sql connect mytestdbserver --user root
+
+	Connecting to CloudSQL using VM
+	-------------------------------
+	Create a VM instance to connect to Cloud SQL Instance 
+
+	apt-get update 
+	
+	apt install mysql-client -y
+	
+	mysql -h <ip> or <servername> -u root -p 
+	
+	mysql -h 35.232.15.49 -u root -p
+	
+Connecting a Asp.Net Core MVC app to CloudSQL instance 
+------------------------------------------------------
+1.Create a Asp.NET Core MVC Project 
+
+	-Open a blank folder in VS Code 
+	
+	-In the integrated terminal run the following command 
+	
+		dotnet new mvc -f net6.0 --use-program-main
+		
+2.Install the libraries for EF Core 
+
+	dotnet add package Microsoft.EntityFrameworkCore --version 6.0.21
+
+	dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.21
+	
+	dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.21
+	
+	dotnet add package MySql.EntityFrameworkCore --version 6.0.21
+	
+Read Replica
+------------
+A read replica is a clone of your Cloud SQL instance that follows the primary or master instance pulling in any changes made to master 
+It is strictly read-only , which means it will reject any queries that modifies data (Insert, Update or Delete)
+It is useful when your application does a lot more reads than writes, so you can turn a bunch of read replicas and route some of read-only traffic to those instance
+
+Failover Replica
+----------------
+A Failover replica is similar to a read replica except its primary job is to be ready as a replacement of primary instance in case of sort of disaster.
+To Implement Failover Replica we need to have multi-zone deployment of the Cloud SQL instance 
+
+Cloud Storage 
+-------------
+Cloud Storage provides a world-wide storage and reterival of any amount of data at any time 
+We can uses cloud storage for a range of scenarios including serving website content, storing data for archival purpose or taking backup of VM in case of disaster recovery , distributing large objects or files for direct download
+It is similar to S3 in AWS and Storage Account in Azure 
+
+Application Scenarios 
+---------------------
+
+Online Job Portal :- Resume or CV's, Profile Pictures, Certificate, Video Profile 
+
+Social Networking Site :- Images, Profiles Pictures, Video, Post etc...
+
+Online Streaming Platform :- (Udemy, Pluralsight, YouTube, Netflix, Amazon Prime..)
+
+It reduces the complexity of managing the data 
+Provides simple APIs for uploading and retrieveing data with automatic replication and caching around the globe 
+
+Buckets and Objects 
+-------------------
+You can think of bucket as a container or a folder that stores your data
+This bucket name should be unique (globally unique in gcp infrastructure)
+The bucket itself is replicated and spread across many physical disk to maintain high levels of durability and availbility
+Bucket exits either at the regional level or spread across multiple region 
+
+Objects are files or data that you store inside a bucket
+Each file or object in the bucket should not exceed size of 5TB's
+
+Creating a Bucket 
+
+	-Name (unique)
+	-Location 
+	-Storage Class 
+	-Access 
+	
+Ways to Interact with Cloud Storage 
+-----------------------------------
+-Cloud Console 
+-gsutil 
+	It is command based utility on the Cloud Shell or on the local system where Google Cloud SDK is installed 
+	It allows you to manage the cloud storage buckets and perform different action like list, add , upload ,download etc....
+	
+	
+	gsutil ls - list all the bucktes in the current project 
+	
+	gsutil ls <bicket gsutil uri> - list all the files in the said bucket 
+	
+	Creating a text file in the cloud shell and upload the same in the bucket
+	
+	echo "This is simple text file">>file1.txt
+	
+	gsutil cp source destination<gsutil uri>
+	
+	gsutil cp file1.txt gs://gcpdemobucket2023
+	
+	using gsutil on local system 
+	
+	-initialize the cli tool 
+	
+		gcloud init - login with the GCP account 
+		select default project and continue with gsutil command 
+	
+-Code (.Net,Java....)
+
+App Engine(PaaS) 
+---------------
+App Engine is a fully managed cloud computing enviornment that aims to consolidate all the work needed to deploy and run application
+
+It is one of first Google Cloud service that was made available to public . It was introduced in year 2008
+
+It allows you to integrate with the other cloud service for your application 
+
+It Provide you with 2 enviornment for deploying applications
+
+-Standard , release in 2008, offers a fully managed computing enviornment, storage, caching, scheduling etc
+It has support of programming language like Python, Java, NodeJS, Go, Ruby, PHP
+
+-Flex , it uses Docker to deploy and run the application 
+
+Concepts 
+--------
+Application :- Each GCP Project is limited to one application(app engine instance)
+
+Service : It allows you to split your application into smaller units 
+
+Version : Allows you to have multiple version of the service 
+
+Instance :- It is a chunk of computing capacity allocated to your application
+
+Deploy an app engine standard (Python)
+Deploy an app engine flex (Asp.NET Core Application)
+
+app.yaml - information about the app and its deployment 
+
+Google Cloud SDK - CLI Tools 
+
+	gcloud components install app-engine-python 
+	
+Standard Enviornment Demo 
+-------------------------
+Create a Simple Helloworld Application that sends a static response back whenever it receives a request using Python Framework
+
+1.Create a App Engine instance using the GCP Console
+
+2.Create a Python app in the cloud shell and edit the code using the Cloud Shell Editor
+
+	main.py 
+	-------
