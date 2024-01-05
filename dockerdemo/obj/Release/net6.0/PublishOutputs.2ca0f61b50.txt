@@ -1,0 +1,7 @@
+C:\Demos\GCP-Dec 2023\dockerdemo\buildoutput\dockerdemo.exe
+C:\Demos\GCP-Dec 2023\dockerdemo\buildoutput\appsettings.Development.json
+C:\Demos\GCP-Dec 2023\dockerdemo\buildoutput\appsettings.json
+C:\Demos\GCP-Dec 2023\dockerdemo\buildoutput\dockerdemo.dll
+C:\Demos\GCP-Dec 2023\dockerdemo\buildoutput\dockerdemo.deps.json
+C:\Demos\GCP-Dec 2023\dockerdemo\buildoutput\dockerdemo.runtimeconfig.json
+C:\Demos\GCP-Dec 2023\dockerdemo\buildoutput\dockerdemo.pdb
