@@ -40,3 +40,8 @@ C:\Demos\GCP-Dec 2023\TestSQLAPP\obj\Debug\net6.0\refint\TestSQLAPP.dll
 C:\Demos\GCP-Dec 2023\TestSQLAPP\obj\Debug\net6.0\TestSQLAPP.pdb
 C:\Demos\GCP-Dec 2023\TestSQLAPP\obj\Debug\net6.0\TestSQLAPP.genruntimeconfig.cache
 C:\Demos\GCP-Dec 2023\TestSQLAPP\obj\Debug\net6.0\ref\TestSQLAPP.dll
+C:\Demos\GCP-Dec 2023\TestSQLAPP\bin\Debug\net6.0\buildoutput\web.config
+C:\Demos\GCP-Dec 2023\TestSQLAPP\bin\Debug\net6.0\buildoutput\appsettings.Development.json
+C:\Demos\GCP-Dec 2023\TestSQLAPP\bin\Debug\net6.0\buildoutput\appsettings.json
+C:\Demos\GCP-Dec 2023\TestSQLAPP\bin\Debug\net6.0\buildoutput\TestSQLAPP.deps.json
+C:\Demos\GCP-Dec 2023\TestSQLAPP\bin\Debug\net6.0\buildoutput\TestSQLAPP.runtimeconfig.json

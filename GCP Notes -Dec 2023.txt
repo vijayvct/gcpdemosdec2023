@@ -557,3 +557,169 @@ Create a Simple Helloworld Application that sends a static response back wheneve
 
 	main.py 
 	-------
+	
+Cloud Pub/Sub 
+Cloud Functions 
+Cloud Build 
+IAM 
+GKE 
+
+Cloud Pub/Sub
+-----------------
+
+* Just like people, machines often need to communicate with one another, particularly in any sort of large distributed applications. As you might expect, machine-to-machine communication tends to have requirements similar to the ones you have.
+
+The headache of messaging
+-------------------------------
+
+* Meeting these requirements isn’t as easy. 
+* You might broadcast messages to a group, which has slightly different requirements (for example, messages should be received exactly once by each member of the group). And this communication might be synchronous (like calling someone on the phone) or asynchronous (like leaving a voice mail), each with its own requirements.
+* A lot of open source messaging platforms (like Apache Kafka and ZeroMQ) and a variety of standards (like AMQP) are available to handle this trickiness, each with its own benefits and drawbacks, but they all tend to require you to turn on some servers and install and manage some software to route all these messages everywhere. And as the number of messages you want to send grows, you’ll need to turn on more machines and possibly reconfigure the system to make use of the new computing power. This is where Cloud Pub/Sub comes into the picture.
+
+
+What is Cloud Pub/Sub?
+---------------------------
+
+* Cloud Pub/Sub is a fully managed messaging system (like Apache Kafka) that Google built on top of its internal infrastructure.
+
+
+Life of a message
+--------------------
+
+* Lets start with high-level overview of how Cloud Pub/Sub works in practice.
+
+* At the beginning, a message producer (also known as a sender) decides it wants to send a message. But you can’t send a message out into the world without categorizing it in some way. You have to decide what the message is about and publish it specifically to that topic. As a result, this producer first decides on a category (called a topic) and then publishes a message specifically to that topic.
+
+* Once Cloud Pub/Sub receives the message, it’ll assign the message an ID that’s unique to the topic and will return that ID to the producer as confirmation that it received the message. (Refer Image 1)
+
+* Now that the message has arrived at Cloud Pub/Sub, a new question arises: who’s interested in this message? To figure this out, Cloud Pub/Sub uses a concept of subscriptions. Cloud Pub/Sub looks at all of the subscriptions that already exist on the topic and broadcasts a copy of the message to each of them. Much like a work queue, subsequent messages sent to the topic will queue up on each subscription. (Refer Image 2).
+
+* Pub/Sub has received the message and it’s in the queue of everyone who expressed interest in receiving messages about that topic. But the message still isn’t delivered!. To understand why, we must shift our focus from the producer of a message to the receiver of that message, which is called a consumer.
+
+* Once a message lands in the queue of a subscription, it can go one of two ways, depending on how the subscription is configured.Either the subscription can push it to an interested consumer, or the message can sit around and wait for that consumer to pull it from the subscription. (Refer Image 3).
+
+* Regardless of how those messages end up on the consumer’s side (either pushed by Cloud Pub/Sub or pulled by the consumer), A final step is
+required, where the consumer needs to acknowledge that it has received and processed the message, which is called acknowledgment.
+
+* Just because a consumer gets a message doesn’t necessarily mean the system should consider that message processed. For example, it’s possible that although the message is delivered to the consumer, their computer crashes in the middle of processing it. In that scenario, you wouldn’t want the message to get dropped entirely; you’d want the consumer to be able to pick it up again later when it has recovered from the crash.
+
+* To complete the process, consumers must acknowledge to Cloud Pub/Sub that they’ve processed the message. They do this by using a special ID they
+get with the message, called an ackId, which is unique. (Refer Image 4)
+
+* What happens when a consumer crashes before it gets around to acknowledging the message? In the case of Pub/Sub, if you don’t acknowledge a message within a certain amount of time (a few seconds by default, but you can customize this for each subscription), the message is put back into the subscription’s queue as though it was never sent in the first place. This process gives Pub/Sub messages an automatic retry feature. And that’s it! Once you’ve acknowledged the message, the subscription considers the message dealt with, and you’re all done.
+
+
+Concepts:
+------------
+1) Topics:
+2) Messages: messages come with the attributes (key-value) to provide metadata. [ priority=high ], message id and timestamp. 
+3) Subscriptions: 
+
+
+ACKNOWLEDGEMENT DEADLINES 
+--------------------------------------
+
+* On each subscription, in addition to the push or pull configuration, you also must specify what’s called an acknowledgment deadline. This deadline, measured in seconds, acts as a timer of how long to wait before assuming that something has gone wrong with the consumer.
+(Refer image 5)
+* Refer Image 6 for various subscription patterns.
+
+
+Commands:
+--------------
+
+> gcloud pubsub topics create MyTopic
+
+> gcloud pubsub topics create Test
+
+> gcloud pubsub topics list
+
+> gcloud pubsub topics delete Test
+
+> gcloud pubsub subscriptions create --topic MyTopic MySubscription
+
+> gcloud pubsub subscriptions create --topic MyTopic MySubscription2
+
+> gcloud pubsub subscriptions create --topic MyTopic MySubscription3
+
+> gcloud pubsub topics list-subscriptions MyTopic
+
+> gcloud pubsub subscriptions delete MySubscription2
+
+> gcloud pubsub topics publish MyTopic --message "Hello"
+
+> gcloud pubsub topics publish MyTopic --message "Good Morning"
+
+> gcloud pubsub topics publish MyTopic --message "How are you?"
+
+> gcloud pubsub subscriptions pull --auto-ack MySubscirption
+
+> gcloud pubsub subscriptions pull --auto-ack MySubscirption --limit=3
+
+
+To Enable API:
+----------------
+
+a) Go to APIs and Services =>  Cloud Pub/Sub  => Enable
+
+gcloud auth application-default login
+
+Cloud Functions 
+---------------
+Cloud Functions is a serverless execution enviornment for building and connection cloud services 
+
+With Cloud Functions you write simple, single-purpose functions that sre attached to events emitted from your cloud infrastructure and services 
+
+Your Cloud Functions is triggered when a event being watched is fired. Your code executes in a fully managed enviornment. There is no need to provision any infrastructure or worry about managing any servers 
+
+Cloud Functions can be in a variety of programming language like NodeJS, Python, Java, C#, Go etc and are executed in language-specific runtime as well 
+
+Cloud Functions provides a connection layer for logic that lets you write code to connect and extend cloud services. eg:- Listen and respond to a file upload to cloud storage, a log changes, or incoming message on a cloud pub/sub topic 
+
+Cloud Functions can be directly in the Google Cloud Enviornment or we can develop the cloud functions locally and then publish the same to the Google Cloud 
+
+Events and Triggers 
+-------------------
+Cloud events are actions that happens in your cloud enviornment. These might be things like changes to data in database, file upload in storage system or a new virtual machine being created.
+
+Functions are chunck of code that runs in response to event. The most common event that you're likely to use is HTTP request, but they can also come from other places or services such as Cloud Storage or Pub/Sub
+
+Triggers are ways of coupling a function with some events. You use triggers to specify which events (and which typed of events) should be routed to a given  function 
+
+Every event comes with attributes which you can use when building your function, including the basic details of a event , the resources targeted by the event and the payload of data specific event 
+
+Functions
+---------
+A function is a arbitary chunk of code that can run on demand. It also comes with extra configuration that tells the cloud functions runtime how to execute the function or returning error in case of failure etc.
+The functions is allocated 256MB of memory by default 
+
+You need to enable the following APIs for create Cloud Functions 
+
+Cloud Build API
+Cloud Function API
+Cloud Logging API
+Cloud Pub/Sub API
+
+
+Practical 
+---------
+1)Create a HTTP Triggered Function
+
+2)Create a Cloud Storage Triggered Function
+	-Create a Cloud Storage Bucket
+	-Create a Cloud Function with Cloud Storage Trigger (specify the name of the bucket)
+	-To test the function , we upload a file in the Cloud Storage which triggeres the function and the messages are displayed in the logs of the function
+
+3)Create a Cloud Function with Pub/Sub Topic Trigger
+
+	-Enable all the required APIs
+	
+	-Create a Pub/Sub Topic
+		topic name :- greetings
+
+4)Create a Function locally and deploying it to GCP Cloud
+
+	Visual Studio Code + Google Cloud Code 
+	
+	1) Login to the Google Cloud Account using the extension in VS Code 
+	
+	

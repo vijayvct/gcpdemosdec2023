@@ -5,8 +5,6 @@ namespace TestSQLAPP.Models;
 
 public class MyContext:DbContext
 {
-    private readonly IConfiguration config;
-
     public DbSet<Product> Products { get; set; }
 
     public MyContext(DbContextOptions<MyContext> options):base(options)
